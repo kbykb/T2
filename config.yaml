@@ -1,0 +1,132 @@
+# 内部转发请求配置，0值为无超时 单位为秒
+# connTimeout: 用户连接超时
+# idleConnTimeout: 空闲连接超时
+# responseHeaderTimeout: 响应头超时
+server-conn:
+  connTimeout: 0
+  idleConnTimeout: 0
+  responseHeaderTimeout: 0
+
+white-addr:
+#  - '127.0.0.1'
+#  - 'xxx.xxx.xxx.xxx'
+
+# 开启特殊标记增强
+flags: true
+
+# 图片访问
+domain: "https://chat-completion-chatgpt-adapter.hf.space"
+
+# 内调llm，用于绘图时文本转tags
+llm:
+  baseUrl: "http://127.0.0.1:7860"
+  model: "bing"
+  token: "xxx"
+
+# lmsys fn、 trigger
+lmsys: [49 , 109]
+
+# hf 绘图接口配置化
+# 若旧接口不可用，可以到huggingface上查找同类型的接口配置
+# 参数替换：{{prompt}}、{{negative_prompt}}、{{sampler}}、{{style}}、{{seed}}
+hf:
+#  animagine-xl-3.1:
+#    baseUrl: https://boboiazumi-animagine-xl-3-1.hf.space
+#    fn: [5, 61]
+#    data: '[
+#      "{{prompt}}",
+#      "{{negative_prompt}}",
+#      {{seed}},
+#      1024,
+#      1024,
+#      8,
+#      35,
+#      "{{sampler}}",
+#      "1024 x 1024",
+#      "{{style}}",
+#      "Standard v3.1",
+#      true,
+#      0.55,
+#      1.5,
+#      false,
+#      false,
+#      null,
+#      0.65
+#    ]'
+#  dalle-4k:
+#    baseUrl: https://mukaist-dalle-4k.hf.space
+#  dalle-3-xl:
+#    baseUrl: https://ehristoforu-dalle-3-xl-lora-v2.hf.space
+
+# gemini 自定义安全设置
+google:
+#  safes:
+#    - category: HARM_CATEGORY_HARASSMENT
+#      threshold: BLOCK_NONE
+
+bing:
+  baseUrl: "https://edgeservices.bing.com/edgesvc"
+
+claude:
+  pad: 0
+  cookies:
+    - 'xxx1'
+    - 'xxx2'
+
+you:
+  helper: 8082
+  notice: "Creative Writing Mode"
+  cookies:
+     - 'afUserId=8d86021a-ee96-4196-b7c6-f52854bcfac1-p; uuid_guest=0b269d2c-146f-44f1-ae12-4f0e547b04b2; safesearch_guest=Moderate; ai_model=gpt_4o; youchat_personalization=true; youchat_smart_learn=true; total_query_count=0; AF_DEFAULT_MEASUREMENT_STATUS=true; _gcl_au=1.1.879573261.1729324379; AF_SYNC=1729324379434; _ga=GA1.1.2055982022.1729324381; FPAU=1.1.879573261.1729324379; daily_query_count=0; daily_query_date=Sun%20Oct%2020%202024; _clck=16z0yu5%7C2%7Cfq6%7C0%7C1753; has_dismissed_teams_welcome=true; safesearch_66dd0a2192140dc26483baa90d0b64ff291d3f5403bff56991147252d33f2616=Moderate; FPLC=F%2FDIErzON%2BoDMjQHdH8enPqQcnGOTFX4dWCOlFELAGeJEpf6OYK%2BmVBxumlO%2BIaMF5D3osjtTTPKYtcAPYiD8VgLtb%2BFJO5sVIOvgDeL6YdXXpnXiz68M2%2FgyNvDww%3D%3D; ab.storage.deviceId.dcee0642-d796-4a7b-9e56-a0108e133b07=g%3Aaaae63db-c246-cc96-23aa-0c9612b039e6%7Ce%3Aundefined%7Cc%3A1729324376964%7Cl%3A1729403796937; ab.storage.userId.dcee0642-d796-4a7b-9e56-a0108e133b07=g%3AU2ngnqcmepkM5EmkrhASf5d9KI3e%7Ce%3Aundefined%7Cc%3A1729403796935%7Cl%3A1729403796938; FPGSID=1.1729403802.1729404166.G-WYGVQX1R23.03aDrIDm7ohyHCinL4d16w; ab.storage.sessionId.dcee0642-d796-4a7b-9e56-a0108e133b07=g%3A2453e830-a3ad-b3b1-76e5-91e27a86d75f%7Ce%3A1729405974386%7Cc%3A1729403796937%7Cl%3A1729404174386; youpro_subscription=false; you_subscription=free; _clsk=1yujmos%7C1729404516059%7C5%7C0%7Cq.clarity.ms%2Fcollect; ld_context=%7B%22kind%22%3A%22user%22%2C%22key%22%3A%220b269d2c-146f-44f1-ae12-4f0e547b04b2%22%2C%22email%22%3A%22UNKNOWN%22%2C%22country%22%3A%22HK%22%2C%22userAgent%22%3A%22Mozilla%2F5.0%20(Windows%20NT%2010.0%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F129.0.0.0%20Safari%2F537.36%22%2C%22secUserAgent%22%3A%22%5C%22Google%20Chrome%5C%22%3Bv%3D%5C%22129%5C%22%2C%20%5C%22Not%3DA%3FBrand%5C%22%3Bv%3D%5C%228%5C%22%2C%20%5C%22Chromium%5C%22%3Bv%3D%5C%22129%5C%22%22%7D; _ga_2N7ZM9C56V=GS1.1.1729403804.5.1.1729404603.0.0.2000018648'
+  serverless:
+  enabled: true
+  disabled-gpu: true
+  # 当无法找到指定的浏览器时可以在此配置路径
+  # execPath: /usr/bin/microsoft-edge
+  headless: new
+
+# coze 默认配置；；；内置配置经常变动，难以维护改为配置化。新增webSdk模式，但还未得知速率是否有限制？？？
+coze:
+#  8k:
+#    botId: 114514
+#    version: 9527
+#    scene: 2
+#    isW: false
+#  128k:
+#    botId: 114514
+#    version: 9527
+#    scene: 2
+#    isW: false
+#  images:
+#    botId: 114514
+#    version: 9527
+#    scene: 2
+
+# 多个websdk账号可开启，用于请求计数，超过count数量该账号进入静置区
+  websdk:
+#    counter: 0
+#    model:
+#    accounts:
+#    - email: xxx@gmail.com
+#      password: xxx
+#      validate: xxx@gmail.com
+
+interpreter:
+  baseUrl: http://127.0.0.1:7860
+  echoCode: false
+  ws: true
+
+custom-llm:
+  baseUrl: http://127.0.0.1:8080
+
+# toolCall 默认配置化; 在 flags 关闭时也可用
+toolCall:
+  id: -1
+  enabled: false
+  tasks: false
+
+# 图片放大，domain需要公网可访问的地址
+# key请到https://bigjpg.com获取，每月30次免费
+# 目前注册没有限制，可配置多个key轮询
+#magnify:
+#  - "xxx"
